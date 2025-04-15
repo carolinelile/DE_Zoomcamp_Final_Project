@@ -34,9 +34,9 @@ The years 2019 and 2020 were selected because, starting in January 2020 (and Feb
 After downloading the annual NYC zip folders locally, each file is unzipped to extract the monthly trip data. Some of these folders may contain embedded zip files, which also need to be unzipped. A recursive unzipping function is implemented to ensure that all nested zip files are fully extracted for downstream processing. For JC, the data is provided as individual monthly zip files, each of which becomes a CSV file after extraction.
 
 ### 3. **Data Transformation and loading to GCS**
-- **The raw CSV files were read and processed using Spark with appropriate schemas on a yearly basis.
-- **Records with latitude and longitude values outside the geographic bounds of NYC and JC were filtered out, and additional columns for year and month were added based on the trip start time.
-- **The Spark DataFrame was then coalesced into a single Parquet file per year and written to a designated path in GCS.
+- The raw CSV files were read and processed using Spark with appropriate schemas on a yearly basis.
+- Records with latitude and longitude values outside the geographic bounds of NYC and JC were filtered out, and additional columns for year and month were added based on the trip start time.
+- The Spark DataFrame was then coalesced into a single Parquet file per year and written to a designated path in GCS.
 
 ### 3. **Data Storage in GCS**
 - **Format:** Data is stored in Parquet format.
