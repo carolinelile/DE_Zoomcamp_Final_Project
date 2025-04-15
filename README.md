@@ -57,8 +57,8 @@ The pipeline covers the following steps:
 ### Heatmap example of Citi Bike usage in Jan 2019
 <img width="925" alt="Screenshot 2025-04-14 at 10 21 50 PM" src="https://github.com/user-attachments/assets/6bce8fa5-4655-44c1-a69b-c8d41e624613" />
 
+[https://raw.githubusercontent.com/carolinelile/DE_Zoomcamp_Final_Project/refs/heads/main/citibike_2019_monthly_heatmap_toggle.html]
 
-[https://raw.githubusercontent.com/carolinelile/DE_Zoomcamp_Final_Project/blob/main/citibike_2019_monthly_heatmap_toggle.html]
 
 
 ---
