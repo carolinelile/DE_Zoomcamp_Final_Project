@@ -11,26 +11,6 @@ Analyzing Citi Bike data from this period provides valuable insights into how pe
 
 ---
 
-Pipeline Overview
-The pipeline includes the following key steps:
-
-Data Extraction and Transformation
-
-Download and process raw Citi Bike data.
-
-Batch Processing with Spark
-
-Transform the data and write it to Google Cloud Storage (GCS) in Parquet format.
-
-Data Loading into BigQuery using Kestra
-
-Orchestrate the loading of transformed data from GCS into BigQuery.
-
-Data Visualization
-
-Create interactive dashboards and heatmaps using Metabase, including a toggle for heatmap views.
-
-
 ## Pipeline Overview
 The pipeline covers the following steps:
 
