@@ -24,7 +24,7 @@ The pipeline covers the following steps:
 ## Pipeline Walk-through
 
 ### 1. **Connecting to GCP Virtual Machine**
-- The pipeline begins by connecting to a virtual machine (VM) instance on Google Cloud Platform (GCP), which serves as the execution environment for downloading, unzipping, and processing the raw Citi Bike data.
+- The pipeline starts with connecting to a VM instance on GCP, which serves as the execution environment for downloading, unzipping, and processing the raw Citi Bike data.
   
 ### 2. **Data Extraction**
 - **Data Source:** Citi Bike trip history data is downloaded from [citybikenyc.com](https://citibikenyc.com/system-data).
