@@ -57,9 +57,6 @@ The pipeline covers the following steps:
 ### Heatmap of Citi Bike usage in Jan 2019
 <img width="925" alt="Screenshot 2025-04-14 at 10 21 50 PM" src="https://github.com/user-attachments/assets/6bce8fa5-4655-44c1-a69b-c8d41e624613" />
 
-### Heatmap of Citi Bike usage in Jan 2019
-<img width="781" alt="Screenshot 2025-04-14 at 10 27 51 PM" src="https://github.com/user-attachments/assets/a5a5cc43-2589-491e-87e8-65dc2a99cecb" />
-
 
 
 
