@@ -31,17 +31,17 @@ The pipeline covers the following steps:
 - **Why 2019 and 2020?**  
 The years 2019 and 2020 were selected because, starting in January 2020 (and February 2021 for Jersey City), the datasets no longer include key demographic variables such as year of birth and gender. Including these years allows for demographic distribution analysis in the results. In addition, Citi Bike significantly expanded its coverage during this period, adding 85 new stations across Brooklyn and Queens in 2019, and extending into the Bronx and Upper Manhattan with over 100 new stations in 2020, which was driven by increased reliance on bicycles during COVID-19. Visualizing these station expansions can help explain ridership trends.
 - **Unpacking and Recursive Unzipping:**  
-After downloading the annual NYC zip folders locally, each file is unzipped to extract the monthly trip data. Some of these folders may contain embedded zip files, which also need to be unzipped. A recursive unzipping function is implemented to ensure that all nested zip files are fully extracted for downstream processing. For JC, the data is provided as individual monthly zip files, each of which becomes a CSV file after extraction.
+After downloading the annual NYC zip folders locally, each file is unzipped to extract the monthly trip data. Some of these folders may contain embedded zip files, which also need to be unzipped. A recursive unzipping function is implemented to ensure that all nested zip files are fully extracted for downstream processing. For Jersey City, the data is provided as individual monthly zip files, each of which becomes a CSV file after extraction.
 
 ### 3. **Data Transformation and loading to GCS**
 - The raw CSV files were read and processed using Spark with appropriate schemas on a yearly basis.
-- Records with latitude and longitude values outside the geographic bounds of NYC and JC were filtered out, unnecessary columns were dropped, and additional columns for year and month were added based on the trip start time.
+- Records with latitude and longitude values outside the geographic bounds of NYC and Jersey City were filtered out, unnecessary columns were dropped, and additional columns for year and month were added based on the trip start time.
 - The Spark DataFrame was then coalesced into a single Parquet file per year and written to a designated path in GCS.
 
-### 3. **Data Storage in GCS**
-- **Format:** Data is stored in Parquet format.
-- **Destination:** `gs://zoomcamp_final_project/citibike/<year>/`
-- **Tool Used:** Apache Spark GCS Connector for write operations.
+### 4. **Heatmap Visualization**
+- Trip counts are aggregated by month and pickup location using Spark to condense large datasets into simplified ride density summaries, reducing memory load and improving visualization performance.
+- Ride volumes are then normalized by dividing each count by the maximum monthly ride count, scaling the values between 0 and 1. This step ensures that heatmap intensity reflects relative activity, so high- and low-volume locations are both visually distinguishable. Normalization also ensures that heatmaps generated for different months and years are displayed on a consistent scale. For example, even though the heatmaps for March 2019 and March 2020 are rendered on separate maps, they use the same intensity scale, enabling fair and reliable comparisons.
+- A Folium map centered roughly at Midtown Manhattan is created, a toggleable heatmap layer is added for each month, and the results are saved yearly as an interactive .html file with layer controls.
 
 ### 4. **Load into BigQuery**
 - **Tool Used:** [Kestra](https://kestra.io/), an open-source orchestration tool.
