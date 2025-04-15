@@ -23,26 +23,20 @@ The pipeline covers the following steps:
 
 ## Pipeline Walk-through
 
-### 1. **Data Extraction**
+### 1. **Connecting to GCP Virtual Machine**
+- **As the first step, the pipeline begins by connecting to a virtual machine (VM) instance on Google Cloud Platform (GCP), which serves as the execution environment for downloading, unzipping, and processing the raw Citi Bike data.
+  
+### 2. **Data Extraction**
 - **Data Source:** Citi Bike trip history data is downloaded from [citybikenyc.com](https://citibikenyc.com/system-data).
 - **Why 2019 and 2020?**  
 The years 2019 and 2020 were selected because, starting in January 2020 (and February 2021 for Jersey City), the datasets no longer include key demographic variables such as year of birth and gender. Including these years allows for demographic distribution analysis in the results. In addition, Citi Bike significantly expanded its coverage during this period, adding 85 new stations across Brooklyn and Queens in 2019, and extending into the Bronx and Upper Manhattan with over 100 new stations in 2020, which was driven by increased reliance on bicycles during COVID-19. Visualizing these station expansions can help explain ridership trends.
 - **Unpacking and Recursive Unzipping:**  
-After downloading the annual nyc zip folders, each file is unzipped to extract the monthly trip data. Some of these folders may contain embedded zip files, which also need to be unzipped. A recursive unzipping function is implemented to ensure that all nested zip files are fully extracted for downstream processing.
+After downloading the annual NYC zip folders locally, each file is unzipped to extract the monthly trip data. Some of these folders may contain embedded zip files, which also need to be unzipped. A recursive unzipping function is implemented to ensure that all nested zip files are fully extracted for downstream processing. For JC, the data is provided as individual monthly zip files, each of which becomes a CSV file after extraction.
 
-
-
-
-### 2. **Data Extraction and Transformation**
-- **Unzipping:** Files are recursively unzipped and cleaned from extra nested zips and metadata.
-- **Spark Setup:** Apache Spark is used for scalable data processing.
-- **Schema Handling:**
-  - `schema_old`: Applied to 2019 and pre-2020 data.
-  - `schema_new`: Applied to NYC data post-2020.
-- **Merging Datasets:** NYC and JC datasets are separately read and unioned with `allowMissingColumns=True`.
-- **Column Normalization:** Renaming and dropping unneeded columns.
-- **Filtering:** Trips are filtered to stay within the NYC and JC bounding box.
-- **New Columns:** Year and month are extracted for partitioning and aggregation.
+### 3. **Data Transformation and loading to GCS**
+- **The raw CSV files were read and processed using Spark with appropriate schemas on a yearly basis.
+- **Records with latitude and longitude values outside the geographic bounds of NYC and JC were filtered out, and additional columns for year and month were added based on the trip start time.
+- **The Spark DataFrame was then coalesced into a single Parquet file per year and written to a designated path in GCS.
 
 ### 3. **Data Storage in GCS**
 - **Format:** Data is stored in Parquet format.
