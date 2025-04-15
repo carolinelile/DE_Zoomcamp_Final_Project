@@ -51,7 +51,7 @@ The pipeline covers the following steps:
 - **Type:** Monthly heatmaps overlayed as map layers.
 - **Normalization:** Rides are globally normalized for consistent color intensity across months.
 - **Output:** An interactive HTML file per year with toggle control between months.
-[Citi Bike report 2019-2020.pdf](https://github.com/user-attachments/files/19746590/Citi.Bike.report.2019-2020.pdf)
+[Citi Bike report 2019-2020.pdf](https://github.com/user-attachments/files/19746598/Citi.Bike.report.2019-2020.pdf)
 <img width="865" alt="Screenshot 2025-04-14 at 9 27 05 PM" src="https://github.com/user-attachments/assets/fe3e9897-e443-443a-8753-fd3aea3c4245" />
 
 ---
