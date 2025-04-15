@@ -16,7 +16,7 @@ The pipeline covers the following steps:
 
 1. **Data Extraction and Transformation**
 2. **Batch processing to load data into Google Cloud Storage using Spark**
-3. **Data moving from GCS into BigQuery using Kestra**
+3. **Data moving from GCS to BigQuery using Kestra**
 4. **Data Visualization including toggleable heatmap layers and interactive dashboard using Metabase**
 
 ---
