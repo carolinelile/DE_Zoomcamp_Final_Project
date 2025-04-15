@@ -21,7 +21,7 @@ The pipeline covers the following steps:
 
 ---
 
-## Step-by-Step Pipeline Description
+## Step-by-Step Pipeline Explanation
 
 ### 1. **Data Extraction**
 - **Data Source:** Citi Bike trip history data is downloaded from [citybikenyc.com](https://citibikenyc.com/system-data).
