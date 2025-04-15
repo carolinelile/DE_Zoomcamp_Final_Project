@@ -22,9 +22,9 @@ The pipeline covers the following steps:
 ---
 
 ## Step-by-Step Pipeline Description
-
-### 1. **Data Ingestion**
-- **Source:** Citi Bike trip data is downloaded from [s3.amazonaws.com/tripdata](https://s3.amazonaws.com/tripdata/).
+https://citibikenyc.com/system-data
+### 1. **Data Extraction**
+- **Data Source:** Citi Bike trip history data is downloaded from [citybikenyc](https://citibikenyc.com/system-data) [s3.amazonaws.com/tripdata](https://s3.amazonaws.com/tripdata/).
 - **NYC Data:** Provided in yearly zipped files.
 - **Jersey City (JC) Data:** Provided monthly with `JC-YYYYMM` prefix.
 - **Tool Used:** Python `requests` library to fetch data.
