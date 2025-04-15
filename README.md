@@ -1,5 +1,5 @@
 # Citi Bike Data Pipeline (2019-2020)
-The final project of 2025 DE Zoomcamp, it implements a data pipeline to extract, transform, load and visualize Citi Bike trip data for both New York City and Jersey City for the years **2019** and **2020**.
+This repository contains the final project for the January–April 2025 DE Zoomcamp https://github.com/DataTalksClub/data-engineering-zoomcamp. It implements a data pipeline to extract, transform, load and visualize Citi Bike trip data for both New York City and Jersey City for the years **2019** and **2020**.
 
 ---
 
