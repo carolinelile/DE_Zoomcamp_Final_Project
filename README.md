@@ -53,6 +53,7 @@ The pipeline covers the following steps:
 - **Output:** An interactive HTML file per year with toggle control between months.
 - 
 ![IMG_0298](https://github.com/user-attachments/assets/b56ceb79-6ef6-436f-a434-c22885b70c4a)
+![IMG_0302](https://github.com/user-attachments/assets/7ea3d4b9-0b0b-4938-8cbd-0641f4e1634f)
 
 ### Heatmap example of Citi Bike usage in Jan 2019
 <img width="925" alt="Screenshot 2025-04-14 at 10 21 50 PM" src="https://github.com/user-attachments/assets/6bce8fa5-4655-44c1-a69b-c8d41e624613" />
