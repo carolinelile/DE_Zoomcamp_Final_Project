@@ -52,9 +52,11 @@ The pipeline covers the following steps:
 - **Normalization:** Rides are globally normalized for consistent color intensity across months.
 - **Output:** An interactive HTML file per year with toggle control between months.
 - 
-![IMG_0296](https://github.com/user-attachments/assets/f1ed482a-3d18-44f3-b364-10075b89c1ee)
+![IMG_0298](https://github.com/user-attachments/assets/b56ceb79-6ef6-436f-a434-c22885b70c4a)
 
-<img width="865" alt="Screenshot 2025-04-14 at 9 27 05 PM" src="https://github.com/user-attachments/assets/fe3e9897-e443-443a-8753-fd3aea3c4245" />
+Heatmap of Citi Bike usage in Jan 2019
+<img width="802" alt="Screenshot 2025-04-14 at 10 19 34 PM" src="https://github.com/user-attachments/assets/7099172c-9da6-4efd-8770-b26794c41113" />
+
 
 ---
 
