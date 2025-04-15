@@ -88,5 +88,3 @@ The pipeline covers the following steps:
 Caroline Li  
 Created as part of the **Data Engineering Zoomcamp Final Project**
 
-[Uploading citibike_2019_monthly_heatmap_toggle.html…]()
-
