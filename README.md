@@ -35,7 +35,7 @@ After downloading the annual NYC zip folders locally, each file is unzipped to e
 
 ### 3. **Data Transformation and loading to GCS**
 - The raw CSV files were read and processed using Spark with appropriate schemas on a yearly basis.
-- Records with latitude and longitude values outside the geographic bounds of NYC and Jersey City were filtered out, unnecessary columns were dropped, and additional columns for year and month were added based on the trip start time.
+- Records with latitude and longitude values outside the geographic bounds of NYC and JC were filtered out, unnecessary columns were dropped, and additional columns for year and month were added based on the trip start time.
 - The Spark DataFrame was then coalesced into a single Parquet file per year and written to a designated path in GCS.
 
 ### 3. **Data Storage in GCS**
