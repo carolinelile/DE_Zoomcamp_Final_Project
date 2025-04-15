@@ -26,9 +26,9 @@ The pipeline covers the following steps:
 ### 1. **Data Extraction**
 - **Data Source:** Citi Bike trip history data is downloaded from [citybikenyc.com](https://citibikenyc.com/system-data).
 - **Why 2019 and 2020?**
-The years 2019 and 2020 were selected because, starting in January 2021 (and February 2021 for Jersey City), the datasets no longer include key demographic variables such as year of birth. Including these years allows for demographic distribution analysis in the results. In addition, Citi Bike significantly expanded its coverage during this period, adding more stations across Brooklyn and Queens in 2019, and extending into the Bronx and Upper Manhattan in 2020—partly in response to increased demand during the COVID-19 pandemic.
+  The years 2019 and 2020 were selected because, starting in January 2021 (and February 2021 for Jersey City), the datasets no longer include key demographic variables such as year of birth. Including these years allows for demographic distribution analysis in the results. In addition, Citi Bike significantly expanded its coverage during this period, adding more stations across Brooklyn and Queens in 2019, and extending into the Bronx and Upper Manhattan in 2020—partly in response to increased demand during the COVID-19 pandemic.
 - **Unpacking and Recursive Unzipping:**
-After downloading the annual zip folders, each file is unzipped to extract the monthly trip data. Some of these folders may contain embedded zip files, which also need to be unzipped. A recursive unzipping function is implemented to ensure that all nested zip files are fully extracted for downstream processing.
+  After downloading the annual zip folders, each file is unzipped to extract the monthly trip data. Some of these folders may contain embedded zip files, which also need to be unzipped. A recursive unzipping function is implemented to ensure that all nested zip files are fully extracted for downstream processing.
 
 
 
