@@ -42,10 +42,16 @@ After downloading the annual NYC zip folders locally, each file is unzipped to e
 - Trip counts are aggregated by month and pickup location using Spark to condense large datasets into simplified ride density summaries, reducing memory load and improving visualization performance.
 - Ride volumes are normalized by dividing each location’s count by the maximum ride count within the same month, scaling values between 0 and 1. This allows the heatmap to reflect relative activity within each month, making it easier to compare location density and highlight both high- and low-volume areas.
 - A Folium map centered roughly at Midtown Manhattan is created, a toggleable heatmap layer is added for each month, and the results are saved yearly as an interactive .html file with layer controls.
-### Heatmap example of Citi Bike usage in Jan 2019
+
 Here are the links to the toggleable heatmap layers. You can select different months using the menu in the top-right corner. To download a heatmap, right-click the link and choose “Save Link As…”. [2019](https://raw.githubusercontent.com/carolinelile/DE_Zoomcamp_Final_Project/refs/heads/main/citibike_2019_monthly_heatmap_toggle.html)
 [2020](https://raw.githubusercontent.com/carolinelile/DE_Zoomcamp_Final_Project/refs/heads/main/citibike_2020_monthly_heatmap_toggle.html)
-<img width="925" alt="Screenshot 2025-04-14 at 10 21 50 PM" src="https://github.com/user-attachments/assets/6bce8fa5-4655-44c1-a69b-c8d41e624613" />
+
+Heatmap example of 2019-01:
+![Screenshot 2025-04-15 at 10 05 40 PM](https://github.com/user-attachments/assets/32ccae42-7bf3-4fb5-92a4-99102ba21a26)
+2020-12:
+![Screenshot 2025-04-15 at 10 06 06 PM](https://github.com/user-attachments/assets/8cb04e0e-5192-42d9-a59b-c1e398eec47b)
+
+
 
 ### 5. **Loading Data from GCS to BigQuery**
 - The Parquet file for each year is manually renamed to `{year}.parquet` in the GCS bucket.
