@@ -79,23 +79,23 @@ Here's the link for the [Interactive Metabase Dashboard](https://alpakaka.metaba
 ---
 
 ## How to Run
-1. Ensure valid Google Cloud credentials are available at:
-   ```
-   /home/<user>/.google/credentials/service-account.json
-   ```
-2. Install required python libraries:
+1. Install required python libraries:
    ```bash
    pip install pyspark pandas google-cloud-storage folium 
    ```
-3. Run the first step python script:
+2. Ensure valid Google Cloud credentials are available at:
+   ```
+   /home/<user>/.google/credentials/service-account.json
+   ```
+3. Run the first-step Python script:
    ```bash
    python citibike_et.py
    ```
-4. Run docker command to so start a local Kestra session
+4. Start a local Kestra session using Docker:
    ```bash
    docker run --pull=always --rm -it -p 8080:8080 --user=root -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp kestra/kestra:latest server local
    ```
-5. Copy the second step yaml file to the Kestra flow and run it
+5. Copy the YAML file for the second step into the Kestra flow and execute it.
 ---
 
 ## Limitations & Future Improvements
