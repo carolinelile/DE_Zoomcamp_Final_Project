@@ -47,7 +47,8 @@ Here are the links to the toggleable heatmap layers. You can select different mo
 [2020](https://raw.githubusercontent.com/carolinelile/DE_Zoomcamp_Final_Project/refs/heads/main/citibike_2020_monthly_heatmap_toggle.html)
 
 Heatmap comparison 2019-01 VS 2020-12:
-![IMG_0312](https://github.com/user-attachments/assets/e99b2cb4-29e1-415d-8d17-deabc8e23ab2)
+![IMG_0314](https://github.com/user-attachments/assets/cd116911-b2cd-44c6-8386-a8ddb491a3c4)
+
 
 ### 5. **Loading Data from GCS to BigQuery**
 - The Parquet file for each year is manually renamed to `{year}.parquet` in the GCS bucket.
