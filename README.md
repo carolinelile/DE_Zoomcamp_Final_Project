@@ -47,6 +47,7 @@ Here are the links to the toggleable heatmap layers. You can select different mo
 [2020](https://raw.githubusercontent.com/carolinelile/DE_Zoomcamp_Final_Project/refs/heads/main/citibike_2020_monthly_heatmap_toggle.html)
 
 Heatmap comparison 2019-01 VS 2020-12:
+
 ![IMG_0314](https://github.com/user-attachments/assets/cd116911-b2cd-44c6-8386-a8ddb491a3c4)
 
 
