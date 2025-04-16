@@ -102,7 +102,7 @@ Here's the link for the [Interactive Metabase Dashboard](https://alpakaka.metaba
 While this project demonstrates a complete pipeline for extracting, transforming, and visualizing Citi Bike data, there are several areas that could be improved to make the solution more scalable, automated, and production-ready:
 
 ### 1. Limited Orchestration and Automation
-The pipeline is not fully orchestrated. The initial Spark script is not containerized, and the workflow is triggered manually. Containerizing the Spark job and orchestrating it through Kestra or Airflow would allow for a one-click, end-to-end pipeline. This would improve reproducibility and reduce manual intervention.
+The pipeline is not fully orchestrated. The initial Spark script is not containerized, and the workflow is triggered manually. Containerizing the Spark job and orchestrating it through Airflow would allow for a one-click, end-to-end pipeline. This would improve reproducibility and reduce manual intervention.
 
 ### 2. Folder Upload Limitation in Kestra
 Kestra does not support uploading an entire folder to GCS, which limits its use in loading partitioned data. This led to writing a single Parquet file per year to simplify loading, which sacrificed efficiency. If folder-level uploads were supported, the full ELT process could be orchestrated with Kestra: extract and load to GCS, then transform with dbt.
