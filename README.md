@@ -3,7 +3,7 @@ This repository contains the final project for the [January–April 2025 DE Zoom
 
 ---
 
-## 🚲Introduction
+## 🚲 Introduction
 
 Citi Bike is New York City and Jersey City's bike share system and one of the largest and most popular in the United States. Launched in May 2013, Citi Bike quickly became an integral part of the cities’ transportation infrastructure. By 2019 and 2020, the system saw significant expansion, with thousands of new docking stations added across various neighborhoods. These two years marked a period of rapid growth and changing ridership habits, shaped by new ways people chose to get around the city and the sudden impact of the COVID-19 pandemic in 2020.
 
@@ -11,7 +11,7 @@ Analyzing Citi Bike data from this period provides valuable insights into how pe
 
 ---
 
-## ⛓️Pipeline Overview
+## ⛓️ Pipeline Overview
 The pipeline covers the following steps:
 
 1. **Data Extraction and Transformation**
@@ -21,7 +21,7 @@ The pipeline covers the following steps:
 
 ---
 
-## 👣Pipeline Walk-through
+## 👣 Pipeline Walk-through
 
 ### 1. **Connecting to GCP Virtual Machine**
 - The pipeline starts with connecting to a VM instance on GCP, which serves as the execution environment for downloading, unzipping, and processing the raw Citi Bike data.
@@ -80,7 +80,7 @@ Here's the link for the [Interactive Metabase Dashboard](https://alpakaka.metaba
 
 ---
 
-## 🔄How to Run
+## 🔄 How to Run
 1. Install required python libraries:
    ```bash
    pip install pyspark pandas google-cloud-storage folium 
@@ -101,7 +101,7 @@ Here's the link for the [Interactive Metabase Dashboard](https://alpakaka.metaba
 ---
 
 
-## 🔧Challenges and Current Limitations
+## 🔧 Challenges and Current Limitations
 
 Throughout this project, several technical challenges came up, and certain design trade-offs were made. While the pipeline demonstrates a complete ETL process for handling and visualizing Citi Bike data, the following issues and limitations remain:
 
