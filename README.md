@@ -17,7 +17,7 @@ The pipeline covers the following steps:
 1. **Data Extraction and Transformation**
 2. **Batch processing to load data into Google Cloud Storage using Spark**
 3. **Data moving from GCS to BigQuery using Kestra**
-4. **Data Visualization including toggleable heatmap layers and interactive dashboard using Metabase**
+4. **Data Visualization including toggleable heatmap layers and dashboard using Metabase**
 
 ---
 
@@ -65,7 +65,7 @@ A final interactive dashboard was created using Metabase to explore Citi Bike tr
 - **Trip volume peaked** during summer and early fall, with July-September seeing over 2 million rides per month in both years.
 - **A sharp drop occurred in April 2020** (692k rides), reflecting the early impact of COVID-19 lockdowns.
 - **Pershing Square North** (42nd St & Park Ave outside Grand Central) was the most popular starting station with over **231,000 trips**.
-- In 2019, the majority of users were **annual members (86.1%)**, with a small portion using short-term passes. Starting in 2020, Citi Bike updated its user type categories to casual and member. That year, **member riders made up 77%** of the user base
+- In 2019, the majority of users were **annual members (86.1%)**, with a small portion using short-term passes. Starting in 2020, Citi Bike updated its user type categories to casual and member. That year, **member riders made up 77%** of the user base.
 - The **gender distribution in 2019** skewed heavily male, with male riders accounting for 68.4% of users—approximately 2.85 times the number of female riders (24%). An additional 7.6% of users did not specify their gender.
 - The **age distribution** showed high ridership among users in their 30s and a spike at age 50, possibly due to default birth year values.
 
