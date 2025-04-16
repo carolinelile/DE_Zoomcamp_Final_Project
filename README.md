@@ -42,6 +42,12 @@ After downloading the annual NYC zip folders locally, each file is unzipped to e
 - Trip counts are aggregated by month and pickup location using Spark to condense large datasets into simplified ride density summaries, reducing memory load and improving visualization performance.
 - Ride volumes are normalized by dividing each location’s count by the maximum ride count within the same month, scaling values between 0 and 1. This allows the heatmap to reflect relative activity within each month, making it easier to compare location density and highlight both high- and low-volume areas.
 - A Folium map centered roughly at Midtown Manhattan is created, a toggleable heatmap layer is added for each month, and the results are saved yearly as an interactive .html file with layer controls.
+### Heatmap example of Citi Bike usage in Jan 2019
+<img width="925" alt="Screenshot 2025-04-14 at 10 21 50 PM" src="https://github.com/user-attachments/assets/6bce8fa5-4655-44c1-a69b-c8d41e624613" />
+
+Right click 'Save Link As' to download the heat map
+https://raw.githubusercontent.com/carolinelile/DE_Zoomcamp_Final_Project/refs/heads/main/citibike_2019_monthly_heatmap_toggle.html
+https://raw.githubusercontent.com/carolinelile/DE_Zoomcamp_Final_Project/refs/heads/main/citibike_2020_monthly_heatmap_toggle.html
 
 ### 5. **Loading Data from GCS to BigQuery**
 - The Parquet file for each year is manually renamed to `{year}.parquet` in the GCS bucket.
@@ -61,17 +67,9 @@ A final interactive dashboard was created using Metabase to explore Citi Bike tr
 - The **gender distribution in 2019** skewed heavily male, with male riders accounting for 68.4% of users—approximately 2.85 times the number of female riders (24%). An additional 7.6% of users did not specify their gender.
 - The **age distribution** showed high ridership among users in their 30s and a spike at age 50, possibly due to default birth year values.
 
-Here's the link for the [interactive metabase_dashboard](https://alpakaka.metabaseapp.com/public/dashboard/5e1c5d0f-9d73-48df-aeb7-fa03af231008), probably valid until April 9, 2025.
+Here's the link for the [Interactive Metabase Dashboard](https://alpakaka.metabaseapp.com/public/dashboard/5e1c5d0f-9d73-48df-aeb7-fa03af231008), probably valid until April 9, 2025.
 
 ![IMG_0309](https://github.com/user-attachments/assets/c2a2a73a-4c4e-4797-a4f4-6f0ec2f943ef)
-
-
-### Heatmap example of Citi Bike usage in Jan 2019
-<img width="925" alt="Screenshot 2025-04-14 at 10 21 50 PM" src="https://github.com/user-attachments/assets/6bce8fa5-4655-44c1-a69b-c8d41e624613" />
-
-Right click 'Save Link As' to download the heat map
-https://raw.githubusercontent.com/carolinelile/DE_Zoomcamp_Final_Project/refs/heads/main/citibike_2019_monthly_heatmap_toggle.html
-https://raw.githubusercontent.com/carolinelile/DE_Zoomcamp_Final_Project/refs/heads/main/citibike_2020_monthly_heatmap_toggle.html
 
 
 
