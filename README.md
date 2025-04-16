@@ -34,29 +34,38 @@ The years 2019 and 2020 were selected because, starting in January 2020 (and Feb
 After downloading the annual NYC zip folders locally, each file is unzipped to extract the monthly trip data. Some of these folders may contain embedded zip files, which also need to be unzipped. A recursive unzipping function is implemented to ensure that all nested zip files are fully extracted for downstream processing. For Jersey City, the data is provided as individual monthly zip files, each of which becomes a CSV file after extraction.
 
 ### 3. **Data Transformation and loading to GCS**
-- The raw CSV files were read and processed using Spark with appropriate schemas on a yearly basis.
+- The raw CSV files are read and processed using Spark with appropriate schemas on a yearly basis.
 - Records with latitude and longitude values outside the geographic bounds of NYC and Jersey City were filtered out, unnecessary columns were dropped, and additional columns for year and month were added based on the trip start time.
 - The Spark DataFrame was then coalesced into a single Parquet file per year and written to a designated path in GCS.
 
 ### 4. **Heatmap Visualization**
 - Trip counts are aggregated by month and pickup location using Spark to condense large datasets into simplified ride density summaries, reducing memory load and improving visualization performance.
-- Ride volumes are then normalized by dividing each count by the maximum monthly ride count, scaling the values between 0 and 1. This step ensures that heatmap intensity reflects relative activity, so high- and low-volume locations are both visually distinguishable. Normalization also ensures that heatmaps generated for different months and years are displayed on a consistent scale. For example, even though the heatmaps for March 2019 and March 2020 are rendered on separate maps, they use the same intensity scale, enabling fair and reliable comparisons.
+- Ride volumes are normalized by dividing each location’s count by the maximum ride count within the same month, scaling values between 0 and 1. This allows the heatmap to reflect relative activity within each month, making it easier to compare location density and highlight both high- and low-volume areas.
 - A Folium map centered roughly at Midtown Manhattan is created, a toggleable heatmap layer is added for each month, and the results are saved yearly as an interactive .html file with layer controls.
 
-### 4. **Load into BigQuery**
-- **Tool Used:** [Kestra](https://kestra.io/), an open-source orchestration tool.
-- **Steps in Kestra:**
-  - Create external table referencing GCS parquet.
-  - Create a BigQuery table with unique IDs using `MD5` hash of key fields.
-  - Merge new rows into final partitioned BigQuery table.
-- **Partitioning:** BigQuery is partitioned using `RANGE_BUCKET` on `year` for performance.
+### 5. **Loading Data from GCS to BigQuery**
+- The Parquet file for each year is manually renamed to `{year}.parquet` in the GCS bucket.
+- Kestra is used to orchestrate the loading process, which involves the following steps:
+  1. **Create an empty final table** in BigQuery with the full schema and all required fields.
+  2. **Create an external table** referencing the Parquet file stored in GCS.
+  3. **Create a temporary table** from the external table, with a unique row ID generated using an `MD5` hash of three key columns.
+  4. **Merge the temporary table** into the final BigQuery table to perform a deduplicated and structured load.
 
-### 5. **Visualization**
-- **Tool Used:** Folium with Leaflet.js rendering.
-- **Type:** Monthly heatmaps overlayed as map layers.
-- **Normalization:** Rides are globally normalized for consistent color intensity across months.
-- **Output:** An interactive HTML file per year with toggle control between months.
-- 
+### 6. **Visualization: Dashboard**
+
+A final interactive dashboard was created to explore Citi Bike trends across 2019 and 2020, offering insights into ridership volume, demographics, and trip patterns:
+
+- **40.8 million total trips** were recorded across both years.
+- **Trip volume peaked** during summer and early fall, with July–September seeing over 2.4 million rides per month in both years.
+- **A sharp drop occurred in April 2020** (692k rides), reflecting the early impact of COVID-19 lockdowns.
+- **Pershing Square North** was the most popular starting station with over **231,000 trips**.
+- In 2019, the majority of users were **annual members (86.1%)**, with a small portion using short-term passes.
+- In 2020, **casual riders made up 23%** of the user base, indicating a slight shift toward non-member usage.
+- The **gender distribution in 2019** skewed heavily male (68.4%), with females making up 24%.
+- The **age distribution** showed high ridership among users in their 30s and a spike at age 50, possibly due to default birth year values.
+
+The dashboard provides an accessible overview of how Citi Bike usage evolved, helping to contextualize the data pipeline outputs and support deeper exploration.
+
 ![IMG_0302](https://github.com/user-attachments/assets/7ea3d4b9-0b0b-4938-8cbd-0641f4e1634f)
 
 ### Heatmap example of Citi Bike usage in Jan 2019
