@@ -71,7 +71,8 @@ A final interactive dashboard was created using Metabase to explore Citi Bike tr
 
 Here's the link for the [Interactive Metabase Dashboard](https://alpakaka.metabaseapp.com/public/dashboard/5e1c5d0f-9d73-48df-aeb7-fa03af231008), probably valid until April 29, 2025.
 
-![IMG_0309](https://github.com/user-attachments/assets/c2a2a73a-4c4e-4797-a4f4-6f0ec2f943ef)
+![Citi Bike report 2019-2020 (5)](https://github.com/user-attachments/assets/60509d37-607c-4369-aa57-f5a83c83e253)
+
 
 
 
