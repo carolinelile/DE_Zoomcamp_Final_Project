@@ -105,13 +105,16 @@ Here's the link for the [Interactive Metabase Dashboard](https://alpakaka.metaba
 
 Throughout this project, several technical challenges came up, and certain design trade-offs were made. While the pipeline demonstrates a complete ETL process for handling and visualizing Citi Bike data, the following issues and limitations remain:
 
-### 1. **Folder Upload Limitation in Kestra**  
+### 1. **Manual Download of Source Data**
+The source data is currently downloaded from public S3 URLs, extracted locally using Python, and then written to GCS. It relies on local storage and manual orchestration, which is not scalable or cloud-native. Ideally, data ingestion should occur entirely in the cloud — using scheduled jobs to fetch, extract, and write directly to cloud storage without local dependencies. Alternatively, for more flexible and production-ready pipelines, selecting data sources with structured APIs can offer more dynamic, queryable access.
+
+### 2. **Folder Upload Limitation in Kestra**  
 Kestra wasn’t able to upload an entire folder to GCS or use flexible file selection methods such as wildcards (`*`) or Python’s `glob` function. If multiple CSVs could have been uploaded directly, the full ELT process — including transformation with dbt — could have been handled entirely within Kestra. This limitation also led to coalescing the Spark output into one Parquet file/year in GCS to simplify the upload process into BigQuery using Kestra, which significantly reduced efficiency. Kestra being a relatively new tool also meant limited online documentation and community support.
 
-### 2. **Spark-to-BigQuery Connector Issue**  
+### 3. **Spark-to-BigQuery Connector Issue**  
 Attempts were made to load data directly from Spark into BigQuery using the Spark–BigQuery connector, but the connection was unsuccessful. Data had to be written to GCS first using Spark, and then loaded into BigQuery using Kestra. This made the ETL process less efficient than a direct Spark-to-BigQuery integration.
 
-### 3. **Limited Orchestration and Containerization**  
+### 4. **Limited Orchestration and Containerization**  
 The pipeline is not fully orchestrated from end to end. Ideally, a single trigger should initiate the entire workflow without manual steps, with each task depending on the successful completion of the previous one. While Kestra was used to orchestrate part of the flow, the initial Spark script could have been containerized and built into a Docker image and executed within the same `docker-compose` environment as Kestra. In addition, the Parquet file written to GCS by Spark had to be manually renamed before it could be loaded into BigQuery via Kestra, since Spark does not support directly specifying output file names
 
 
@@ -153,4 +156,6 @@ If any step in the pipeline fails (e.g., file download, GCS upload, BigQuery loa
 ### 9. No Data Validation or Quality Checks
 There are no checks for data quality issues such as missing fields, schema mismatches, or duplicate rows. Integrating dbt tests or custom validation logic would help ensure data accuracy before it's loaded into BigQuery or visualized.
 
+10. Monolithic Python Script for Initial Processing
+All tasks in the first step — including downloading data, unzipping files, processing with Spark, and uploading to GCS — were implemented in a single Python script. While this simplified development, it reduced modularity and made the code harder to test, maintain, and reuse. In the future, separating these tasks into individual functions, modules, or standalone scripts would improve maintainability and allow more flexible orchestration.
 
