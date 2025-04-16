@@ -101,7 +101,7 @@ Here's the link for the [Interactive Metabase Dashboard](https://alpakaka.metaba
 ---
 
 
-## 🔧 Challenges and Current Limitations
+## 🐞 Challenges and Current Limitations
 
 Throughout this project, several technical challenges came up, and certain design trade-offs were made. While the pipeline demonstrates a complete ETL process for handling and visualizing Citi Bike data, the following issues and limitations remain:
 
@@ -121,7 +121,7 @@ The pipeline is not fully orchestrated from end to end. Ideally, a single trigge
 
 
 
-## Limitations & Future Improvements
+## 👩‍🔧 Future Improvements
 
 While this project demonstrates a complete pipeline for extracting, transforming, and visualizing Citi Bike data, there are several areas that could be improved to make the solution more scalable, automated, and production-ready:
 
