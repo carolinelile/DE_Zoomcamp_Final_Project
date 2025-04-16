@@ -84,16 +84,20 @@ Here's the link for the [Interactive Metabase Dashboard](https://alpakaka.metaba
    ```
 2. Install required libraries:
    ```bash
-   pip install pyspark folium google-cloud-storage pandas
+   pip install pyspark pandas google-cloud-storage folium 
    ```
-3. Run the script:
+3. Run the first step python script:
    ```bash
    python citibike_etl.py
    ```
-
+4. Run docker command to so start a local Kestra session
+   ```bash
+   docker run --pull=always --rm -it -p 8080:8080 --user=root -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp kestra/kestra:latest server local
+   ```
+5. Copy the second step yaml file to the Kestra flow and run it
 ---
 
-## Discussion & Areas for Improvement
+## Limitations & Future Improvements
 
 
 
