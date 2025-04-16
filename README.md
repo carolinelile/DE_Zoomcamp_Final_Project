@@ -99,11 +99,34 @@ Here's the link for the [Interactive Metabase Dashboard](https://alpakaka.metaba
 
 ## Limitations & Future Improvements
 
+While this project demonstrates a complete pipeline for extracting, transforming, and visualizing Citi Bike data, there are several areas that could be improved to make the solution more scalable, automated, and production-ready:
+
+### 1. Limited Orchestration and Automation
+The pipeline is not fully orchestrated. The initial Spark script is not containerized, and the workflow is triggered manually. Containerizing the Spark job and orchestrating it through Kestra or Airflow would allow for a one-click, end-to-end pipeline. This would improve reproducibility and reduce manual intervention.
+
+### 2. Folder Upload Limitation in Kestra
+Kestra does not support uploading an entire folder to GCS, which limits its use in loading partitioned data. This led to writing a single Parquet file per year to simplify loading, which sacrificed efficiency. If folder-level uploads were supported, the full ELT process could be orchestrated with Kestra: extract and load to GCS, then transform with dbt.
+
+### 3. Spark-to-BigQuery Integration Not Implemented
+Directly loading Spark output into BigQuery was not possible due to connector issues. As a workaround, data was written to GCS first and then loaded to BigQuery. Resolving this connector issue would enable a cleaner Spark-driven ETL pipeline and reduce complexity.
+
+### 4. Manual Download of Source Data
+The data is downloaded locally via Python, which works but isn't scalable. In a production-grade pipeline, data ingestion should be cloud-native — ideally using streaming or scheduled ingestion directly into cloud storage. This would also reduce local dependency.
+
+### 5. No Parquet Partitioning
+To simplify the Kestra-to-BigQuery loading process, the Spark DataFrame was coalesced into a single Parquet file per year. However, this is inefficient for querying and storage. Partitioning the data by month or date would make the pipeline more scalable and improve BigQuery performance.
+
+### 6. Manual Parquet File Renaming
+Spark-generated Parquet files have randomized names. Manual renaming was required to conform to `{year}.parquet` before loading. Automating this step in the Spark write logic or within the orchestration tool would improve consistency and save time.
+
+### 7. Visualization Based on Intermediate Data
+The heatmaps were generated using data already read into Spark and written to GCS, bypassing the final cleaned BigQuery tables. For production-quality pipelines, visualizations should reflect the final warehouse data to ensure consistency and traceability.
 
 
----
+### 8. No Error Handling or Retry Logic
+If any step in the pipeline fails (e.g., file download, GCS upload, BigQuery load), there is no retry or alerting mechanism in place. Adding logging, error handling, and notifications would improve robustness.
 
-## Author
-Caroline Li  
-Created as part of the **Data Engineering Zoomcamp Final Project**
+### 9. No Data Validation or Quality Checks
+There are no checks for data quality issues such as missing fields, schema mismatches, or duplicate rows. Integrating dbt tests or custom validation logic would help ensure data accuracy before it's loaded into BigQuery or visualized.
+
 
