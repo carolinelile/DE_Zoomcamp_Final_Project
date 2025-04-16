@@ -52,16 +52,14 @@ After downloading the annual NYC zip folders locally, each file is unzipped to e
   4. **Merge the temporary table** into the final BigQuery table to perform a deduplicated and structured load.
 
 ### 6. **Dashboard Visualization**
-A final interactive dashboard was created to explore Citi Bike trends across 2019 and 2020, offering insights into ridership volume, demographics, and trip patterns:
+A final interactive dashboard was created using Metabase to explore Citi Bike trends across 2019 and 2020:
 - **40.8 million total trips** were recorded across both years.
 - **Trip volume peaked** during summer and early fall, with July–September seeing over 2.4 million rides per month in both years.
 - **A sharp drop occurred in April 2020** (692k rides), reflecting the early impact of COVID-19 lockdowns.
-- **Pershing Square North** was the most popular starting station with over **231,000 trips**.
-- In 2019, the majority of users were **annual members (86.1%)**, with a small portion using short-term passes.
-- In 2020, **casual riders made up 23%** of the user base, indicating a slight shift toward non-member usage.
-- The **gender distribution in 2019** skewed heavily male (68.4%), with females making up 24%.
+- **Pershing Square North** (42nd St & Park Ave outside Grand Central) was the most popular starting station with over **231,000 trips**.
+- In 2019, the majority of users were **annual members (86.1%)**, with a small portion using short-term passes. Starting in 2020, Citi Bike updated its user type categories to casual and member. That year, **member riders made up 77%** of the user base
+- The **gender distribution in 2019** skewed heavily male, with male riders accounting for 68.4% of users—approximately 2.85 times the number of female riders (24%). An additional 7.6% of users did not specify their gender.
 - The **age distribution** showed high ridership among users in their 30s and a spike at age 50, possibly due to default birth year values.
-The dashboard provides an accessible overview of how Citi Bike usage evolved, helping to contextualize the data pipeline outputs and support deeper exploration.
 
 [metabase_dashboard_link](https://alpakaka.metabaseapp.com/public/dashboard/5e1c5d0f-9d73-48df-aeb7-fa03af231008)
 
