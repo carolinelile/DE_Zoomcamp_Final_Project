@@ -55,8 +55,8 @@ Heatmap comparison 2019-01 VS 2020-12:
 - The Parquet file for each year is manually renamed to `{year}.parquet` in the GCS bucket.
 - Kestra is used to orchestrate the loading process, which involves the following steps:
   1. **Create an empty final table** in BigQuery with the full schema and all required fields, partitioned by date based on the trip start time.
-  2. **Create an external table** referencing the Parquet file stored in GCS.
-  3. **Create a temporary table** from the external table, with a unique row ID generated using an `MD5` hash of three key columns.
+  2. **Create an external table** in BigQuery referencing the Parquet file stored in GCS.
+  3. **Create a temporary table** in BigQuery from the external table, with a unique row ID generated using an `MD5` hash of three key columns.
   4. **Merge the temporary table** into the final BigQuery table to perform a deduplicated and structured load.
 
 ### 6. **Dashboard Visualization**
