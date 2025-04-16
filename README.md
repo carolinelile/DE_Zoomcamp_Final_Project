@@ -109,7 +109,7 @@ Throughout this project, several technical challenges came up, and certain desig
 The source data is currently downloaded from public S3 URLs, extracted locally using Python, and then written to GCS. It relies on local storage and manual orchestration, which is not scalable or cloud-native. Ideally, data ingestion should occur entirely in the cloud — using scheduled jobs to fetch, extract, and write directly to cloud storage without local dependencies. Alternatively, for more flexible and production-ready pipelines, selecting data sources with structured APIs can offer more dynamic, queryable access.
 
 ### 2. **Folder Upload Limitation in Kestra**  
-Kestra wasn’t able to upload an entire folder to GCS or use flexible file selection methods such as wildcards (`*`) or Python’s `glob` function. If multiple CSVs could have been uploaded directly, the full ELT process — including transformation with dbt — could have been handled entirely within Kestra. This limitation also led to coalescing the Spark output into one Parquet file/year in GCS to simplify the upload process into BigQuery using Kestra, which significantly reduced efficiency. Kestra being a relatively new tool also meant limited online documentation and community support.
+Kestra wasn’t able to upload an entire folder to GCS or use flexible file selection methods such as wildcards (`*`) or Python’s `glob` function. If multiple CSVs could have been uploaded directly, the full ELT process — including transformation with dbt — could have been handled entirely within Kestra. This limitation also led to coalescing the Spark output into one Parquet file/year in GCS to simplify the upload process into BigQuery using Kestra, which significantly reduced efficiency. 
 
 ### 3. **Spark-to-BigQuery Connector Issue**  
 Attempts were made to load data directly from Spark into BigQuery using the Spark–BigQuery connector, but the connection was unsuccessful. Data had to be written to GCS first using Spark, and then loaded into BigQuery using Kestra. This made the ETL process less efficient than a direct Spark-to-BigQuery integration.
@@ -133,20 +133,19 @@ To move this project closer to a production-grade pipeline, several structural e
 
 ### **1. Orchestration**  
 Use Airflow to orchestrate all steps end-to-end. In this setup:
-Each stage — extracting, moving data to GCS, loading into BigQuery, and running dbt — would be defined as individual Airflow tasks, structured within a Python DAG.
-Airflow would handle scheduling, retries, dependency management, and logging, allowing a single trigger to execute the entire workflow from extraction to transformation.
-Data ingestion should be fully cloud-native. Use gsutil cp or a scheduled transfer job for direct cloud-to-cloud copying from S3 to GCS, removing the need for local downloads or manual uploads.
-dbt transformations could be triggered via a BashOperator calling dbt run.
-Result: Triggering the DAG once would automate the entire pipeline — from raw data ingestion to final transformation — without requiring Spark for batch processing.
+- Each stage — extracting, moving data to GCS, loading into BigQuery, and running dbt — would be defined as individual Airflow tasks, structured within a Python DAG.
+- Airflow would handle scheduling, retries, dependency management, and logging, allowing a single trigger to execute the entire workflow from ingestion to transformation.
+- Data ingestion should be fully cloud-native. Use `gsutil cp` or a scheduled transfer job for direct cloud-to-cloud copying from S3 to GCS.
+- dbt transformations could be triggered via a `BashOperator` calling dbt run.
 
 ### **2. Improving Reproducibility**
-To make the pipeline easy for others to run and extend, the following best practices can be adopted:
-Containerize each component (Python scripts, dbt models, etc.) into modular Docker images.
-Publish Docker images to Docker Hub or GitHub Container Registry.
-Store orchestration code (Airflow DAGs or Kestra flows) and helper scripts in a public GitHub repository.
-Provide a clear README.md with step-by-step instructions, including:
-How to start the Airflow scheduler and run the DAG
-Include a docker-compose.yml to set up orchestrators, networks, and shared volumes.
-Result: Anyone with Docker installed can clone the repo, pull the necessary images, and run the pipeline with minimal configuration — ensuring reproducibility and portability across environments.
+- To make the pipeline easy for others to run and extend, the following best practices can be adopted:
+- Containerize each component (Python scripts, dbt models, etc.) into modular Docker images.
+- Publish Docker images to Docker Hub or GitHub Container Registry.
+- Store orchestration code (Airflow DAGs) and helper scripts in a public GitHub repository.
+- Provide a clear README.md with step-by-step instructions, including:  
+  How to start the Airflow scheduler and run the DAG
+- Include a docker-compose.yml to set up orchestrators, networks, and shared volumes.
+- Anyone with Docker installed can clone the repo, pull the necessary images, and run the pipeline with minimal configuration — ensuring reproducibility and portability across environments.
 
 
