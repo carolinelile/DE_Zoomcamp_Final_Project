@@ -53,7 +53,7 @@ After downloading the annual NYC zip folders locally, each file is unzipped to e
 
 ### 6. **Dashboard Visualization**
 A final interactive dashboard was created using Metabase to explore Citi Bike trends across 2019 and 2020:
-- **40.8 million total trips** were recorded across both years.
+- **A total of 40.8 million trips** were recorded across both years, with an **average trip duration of 16.2 minutes** in 2019.
 - **Trip volume peaked** during summer and early fall, with July–September seeing over 2.4 million rides per month in both years.
 - **A sharp drop occurred in April 2020** (692k rides), reflecting the early impact of COVID-19 lockdowns.
 - **Pershing Square North** (42nd St & Park Ave outside Grand Central) was the most popular starting station with over **231,000 trips**.
@@ -61,7 +61,7 @@ A final interactive dashboard was created using Metabase to explore Citi Bike tr
 - The **gender distribution in 2019** skewed heavily male, with male riders accounting for 68.4% of users—approximately 2.85 times the number of female riders (24%). An additional 7.6% of users did not specify their gender.
 - The **age distribution** showed high ridership among users in their 30s and a spike at age 50, possibly due to default birth year values.
 
-[metabase_dashboard_link](https://alpakaka.metabaseapp.com/public/dashboard/5e1c5d0f-9d73-48df-aeb7-fa03af231008)
+Here's the link for the [interactive metabase_dashboard](https://alpakaka.metabaseapp.com/public/dashboard/5e1c5d0f-9d73-48df-aeb7-fa03af231008), probably valid until April 9, 2025.
 
 ![IMG_0309](https://github.com/user-attachments/assets/c2a2a73a-4c4e-4797-a4f4-6f0ec2f943ef)
 
