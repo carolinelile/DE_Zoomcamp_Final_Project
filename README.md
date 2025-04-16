@@ -117,8 +117,11 @@ Attempts were made to load data directly from Spark into BigQuery using the Spar
 ### 4. **Limited Orchestration and Containerization**  
 The pipeline is not fully orchestrated from end to end. Ideally, a single trigger should initiate the entire workflow without manual steps, with each task depending on the successful completion of the previous one. While Kestra was used to orchestrate part of the flow, the initial Spark script could have been containerized and built into a Docker image and executed within the same `docker-compose` environment as Kestra. In addition, the Parquet file written to GCS by Spark had to be manually renamed before it could be loaded into BigQuery via Kestra, since Spark does not support directly specifying output file names
 
+### 5. Visualization Based on Intermediate Data
+The heatmaps were generated using data read into Spark and written to GCS, as the connection between Spark and BigQuery was unsuccessful. While this avoids reloading the data, it bypasses the final cleaned dataset in BigQuery, which ideally should be the source of truth for reporting and visualizations. 
 
-
+### 6. Single Python Script
+All tasks in the first step — including downloading data, unzipping files, processing with Spark, and uploading to GCS — were implemented in a single Python script. This made the code harder to test, maintain, and reuse. The script should be refactored into smaller, modular components (such as main and functions scripts) to make the pipeline easier to manage and integrate into an orchestrated workflow.
 
 
 
