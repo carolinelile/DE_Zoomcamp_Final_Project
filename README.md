@@ -94,7 +94,7 @@ Here's the link for the [Interactive Metabase Dashboard](https://alpakaka.metaba
    ```bash
    docker run --pull=always --rm -it -p 8080:8080 --user=root -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp kestra/kestra:latest server local
    ```
-5. Copy the second step yaml file 02_kestra_load_data_into_bigquery.yaml to the Kestra flow and run it
+5. Copy the second step yaml file to the Kestra flow and run it
 ---
 
 ## Limitations & Future Improvements
