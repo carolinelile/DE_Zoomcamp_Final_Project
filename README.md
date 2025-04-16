@@ -46,12 +46,8 @@ After downloading the annual NYC zip folders locally, each file is unzipped to e
 Here are the links to the toggleable heatmap layers. You can select different months using the menu in the top-right corner. To download a heatmap, right-click the link and choose “Save Link As…”. [2019](https://raw.githubusercontent.com/carolinelile/DE_Zoomcamp_Final_Project/refs/heads/main/citibike_2019_monthly_heatmap_toggle.html)
 [2020](https://raw.githubusercontent.com/carolinelile/DE_Zoomcamp_Final_Project/refs/heads/main/citibike_2020_monthly_heatmap_toggle.html)
 
-Heatmap example of 2019-01:
-![Screenshot 2025-04-15 at 10 05 40 PM](https://github.com/user-attachments/assets/32ccae42-7bf3-4fb5-92a4-99102ba21a26)
-2020-12:
-![Screenshot 2025-04-15 at 10 06 06 PM](https://github.com/user-attachments/assets/8cb04e0e-5192-42d9-a59b-c1e398eec47b)
-
-
+Heatmap comparison 2019-01 VS 2020-12:
+![IMG_0312](https://github.com/user-attachments/assets/e99b2cb4-29e1-415d-8d17-deabc8e23ab2)
 
 ### 5. **Loading Data from GCS to BigQuery**
 - The Parquet file for each year is manually renamed to `{year}.parquet` in the GCS bucket.
