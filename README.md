@@ -62,7 +62,7 @@ Heatmap comparison 2019-01 VS 2020-12:
 ### 6. **Dashboard Visualization**
 A final interactive dashboard was created using Metabase to explore Citi Bike trends across 2019 and 2020:
 - **A total of 40.8 million trips** were recorded across both years, with an **average trip duration of 16.2 minutes** in 2019.
-- **Trip volume peaked** during summer and early fall, with July–September seeing over 2.4 million rides per month in both years.
+- **Trip volume peaked** during summer and early fall, with September seeing over 2.4 million rides per month in both years.
 - **A sharp drop occurred in April 2020** (692k rides), reflecting the early impact of COVID-19 lockdowns.
 - **Pershing Square North** (42nd St & Park Ave outside Grand Central) was the most popular starting station with over **231,000 trips**.
 - In 2019, the majority of users were **annual members (86.1%)**, with a small portion using short-term passes. Starting in 2020, Citi Bike updated its user type categories to casual and member. That year, **member riders made up 77%** of the user base
