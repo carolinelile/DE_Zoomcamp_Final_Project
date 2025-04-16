@@ -51,7 +51,7 @@ After downloading the annual NYC zip folders locally, each file is unzipped to e
   3. **Create a temporary table** from the external table, with a unique row ID generated using an `MD5` hash of three key columns.
   4. **Merge the temporary table** into the final BigQuery table to perform a deduplicated and structured load.
 
-### 6. **Visualization: Dashboard**
+### 6. **Dashboard Visualization**
 A final interactive dashboard was created to explore Citi Bike trends across 2019 and 2020, offering insights into ridership volume, demographics, and trip patterns:
 - **40.8 million total trips** were recorded across both years.
 - **Trip volume peaked** during summer and early fall, with July–September seeing over 2.4 million rides per month in both years.
