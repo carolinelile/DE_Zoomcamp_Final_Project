@@ -145,14 +145,19 @@ Use `GCSToBigQueryOperator` or a SQL task to load the raw or converted files int
 Trigger `dbt run` via a `BashOperator` to transform the staging data into final, cleaned tables.
 
 
-### 2. Improving Reproducibility
+### 2. Improving Reproducibility  
 To make the pipeline easy for others to run and extend, the following best practices can be adopted:
-- Containerize each component (Python scripts, dbt models, etc.) into modular Docker images.
-- Publish Docker images to Docker Hub or GitHub Container Registry.
-- Store orchestration code - Airflow DAGs and other scripts in a public GitHub repository.
-- Provide a clear README.md with step-by-step instructions, including:  
-  How to start the Airflow scheduler and run the DAG
-- Include a docker-compose.yml to set up orchestrators, networks, and shared volumes.
-- Anyone with Docker installed can clone the repo, pull the necessary images, and run the pipeline with minimal configuration — ensuring reproducibility and portability across environments.
 
-
+- **Containerize each component** (e.g. Python scripts, Spark jobs, dbt models) into modular Docker images.
+- **Publish Docker images** to Docker Hub or GitHub Container Registry for easy reuse.
+- **Store orchestration code** (Airflow DAGs), helper scripts, and configs in a public GitHub repository.
+- **Provide a clear README.md** with step-by-step instructions, including:
+  - How to start Airflow using `docker-compose`
+  - How to trigger and monitor the DAG
+- **Include a docker-compose.yml file** that defines the full orchestrated environment. It should:
+  - Use the official Airflow image (e.g. `apache/airflow:2.7.3`)
+  - Set up core Airflow services: `webserver`, `scheduler`, and `Postgres` metadata DB
+  - Define your custom containers (e.g. Spark-based processing, dbt image)
+  - Mount shared volumes (e.g. `/dags`, `/plugins`, `/logs`)
+  - Set up environment variables and connection configs (via .env or inline)
+- With this setup, anyone with Docker installed can clone the repository, run `docker-compose up`, and execute the pipeline through Airflow — ensuring reproducibility and portability across environments.
