@@ -132,11 +132,17 @@ All tasks in the first step — including downloading data, unzipping files, pro
 To move this project closer to a production-grade pipeline, several structural enhancements could be made to improve orchestration and reproducibility.
 
 ### **1. Orchestration**  
-Use Airflow to orchestrate all steps end-to-end. In this setup:
-- Each stage — extracting, moving data to GCS, loading into BigQuery, and running dbt — would be defined as individual Airflow tasks, structured within a Python DAG.
-- Airflow would handle scheduling, retries, dependency management, and logging, allowing a single trigger to execute the entire workflow from ingestion to transformation.
-- Data ingestion should be fully cloud-native. Use `gsutil cp` or a scheduled transfer job for direct cloud-to-cloud copying from S3 to GCS.
-- dbt transformations could be triggered via a `BashOperator` calling dbt run.
+In a production setup, the pipeline can be orchestrated end-to-end using Airflow, with each of the following steps defined as separate tasks within a DAG:
+- **Transfer Raw Data**  
+Use `gsutil cp` or a scheduled transfer job to copy monthly Citi Bike .zip files directly from the public AWS S3 bucket to a staging bucket in GCS.
+- **Unzip Files in GCS**  
+Run a Python task as Cloud Function to unzip the files in memory.
+- **Convert to Parquet**  
+Use Spark or a Python task to convert the extracted CSVs into Parquet format for optimized storage and query performance.
+- **Load into BigQuery** 
+Use `GCSToBigQueryOperator` or a SQL task to load the raw or converted files into a BigQuery staging table.
+- **Transform with dbt**
+Trigger dbt run via a `BashOperator` to transform the staging data into final tables.
 
 ### **2. Improving Reproducibility**
 - To make the pipeline easy for others to run and extend, the following best practices can be adopted:
