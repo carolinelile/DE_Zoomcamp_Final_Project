@@ -127,7 +127,7 @@ To move this project closer to a production-grade pipeline, several structural e
 ### 1. Orchestration  
 In a production setup, the pipeline can be orchestrated end-to-end using Airflow, with each of the following steps defined as separate tasks within a DAG:
 - **Transfer Raw Data**  
-Use `gsutil cp` or a scheduled transfer job to copy monthly Citi Bike .zip files directly from the public AWS S3 bucket to a staging bucket in GCS.
+Use `gsutil cp` or a scheduled transfer job to copy monthly Citi Bike `.zip` files directly from the public AWS S3 bucket to a staging bucket in GCS.
 - **Unzip Files in GCS**  
 Run a Python-based Cloud Function to unzip the files in memory and write the extracted CSVs back to a specified folder in GCS.
 - **Convert to Parquet**  
