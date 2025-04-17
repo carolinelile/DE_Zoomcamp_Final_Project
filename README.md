@@ -131,24 +131,25 @@ All tasks in the first step — including downloading data, unzipping files, pro
 
 To move this project closer to a production-grade pipeline, several structural enhancements could be made to improve orchestration and reproducibility.
 
-### **1. Orchestration**  
+### 1. Orchestration  
 In a production setup, the pipeline can be orchestrated end-to-end using Airflow, with each of the following steps defined as separate tasks within a DAG:
 - **Transfer Raw Data**  
 Use `gsutil cp` or a scheduled transfer job to copy monthly Citi Bike .zip files directly from the public AWS S3 bucket to a staging bucket in GCS.
 - **Unzip Files in GCS**  
-Run a Python task as Cloud Function to unzip the files in memory.
+Run a Python-based Cloud Function to unzip the files in memory and write the extracted CSVs back to a specified folder in GCS.
 - **Convert to Parquet**  
-Use Spark or a Python task to convert the extracted CSVs into Parquet format for optimized storage and query performance.
-- **Load into BigQuery** 
+Use Spark or a lightweight **Python task** to convert the extracted CSVs into Parquet format for optimized storage and faster querying.
+- **Load into BigQuery**  
 Use `GCSToBigQueryOperator` or a SQL task to load the raw or converted files into a BigQuery staging table.
-- **Transform with dbt**
-Trigger dbt run via a `BashOperator` to transform the staging data into final tables.
+- **Transform with dbt**  
+Trigger `dbt run` via a `BashOperator` to transform the staging data into final, cleaned tables.
 
-### **2. Improving Reproducibility**
-- To make the pipeline easy for others to run and extend, the following best practices can be adopted:
+
+### 2. Improving Reproducibility
+To make the pipeline easy for others to run and extend, the following best practices can be adopted:
 - Containerize each component (Python scripts, dbt models, etc.) into modular Docker images.
 - Publish Docker images to Docker Hub or GitHub Container Registry.
-- Store orchestration code (Airflow DAGs) and helper scripts in a public GitHub repository.
+- Store orchestration code - Airflow DAGs and other scripts in a public GitHub repository.
 - Provide a clear README.md with step-by-step instructions, including:  
   How to start the Airflow scheduler and run the DAG
 - Include a docker-compose.yml to set up orchestrators, networks, and shared volumes.
