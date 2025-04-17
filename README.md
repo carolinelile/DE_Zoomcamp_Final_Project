@@ -73,11 +73,6 @@ Here's the link for the [Interactive Metabase Dashboard](https://alpakaka.metaba
 
 ![IMG_0322](https://github.com/user-attachments/assets/d715ca9f-8b16-4231-9a9d-c99a309bb620)
 
-
-
-
-
-
 ---
 
 ## 🔄 How to Run
@@ -98,8 +93,8 @@ Here's the link for the [Interactive Metabase Dashboard](https://alpakaka.metaba
    docker run --pull=always --rm -it -p 8080:8080 --user=root -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp kestra/kestra:latest server local
    ```
 5. Copy the YAML file for the second step into the Kestra flow and execute it.
----
 
+---
 
 ## 🐞 Challenges and Current Limitations
 
@@ -123,9 +118,7 @@ The heatmaps were generated using data read into Spark and written to GCS, as th
 ### 6. Single Python Script
 All tasks in the first step — including downloading data, unzipping files, processing with Spark, and uploading to GCS — were implemented in a single Python script. This made the code harder to test, maintain, and reuse. The script should be refactored into smaller, modular components (such as main and functions scripts) to make the pipeline easier to manage and integrate into an orchestrated workflow.
 
-
-
-
+---
 
 ## 👩‍🔧 Future Improvements
 
